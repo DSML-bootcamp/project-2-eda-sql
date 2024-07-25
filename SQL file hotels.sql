@@ -79,6 +79,8 @@ arrival_month,
 COUNT(*) AS total_bookings
 FROM 
 booking
+WHERE 
+arrival_year = 2018
 GROUP BY 
 arrival_month
 ORDER BY 
@@ -88,7 +90,8 @@ arrival_month;
 -- number of special requests made and the likelihood of cancellation?
 SELECT 
 no_of_special_requests,
-AVG(CASE WHEN booking_status = 'Canceled' THEN 1 ELSE 0 END) AS cancellation_rate
+AVG(CASE WHEN booking_status = 'Canceled' 
+THEN 1 ELSE 0 END) AS cancellation_rate
 FROM 
 bookingdetails
 GROUP BY 
@@ -257,6 +260,18 @@ room_type_reserved, total_bookings DESC;
 -- check-in/check-out times, room turnover rates, and staff workload. Identify bottlenecks and 
 -- inefficiencies in hotel operations and implement process improvements.
 
+
+SELECT 
+room_type_reserved,
+COUNT(*) AS total_bookings
+FROM 
+booking
+WHERE 
+arrival_year = 2018
+GROUP BY 
+room_type_reserved
+ORDER BY 
+total_bookings DESC;
 
  
  
